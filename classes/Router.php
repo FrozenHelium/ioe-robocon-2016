@@ -16,6 +16,7 @@ class Router extends BaseRouter
             // Controller redirection rules
             // This one is optional as controller name matches the rule
             "home" => array('controller', 'HomeController'),
+            "test" => array('template', 'test.html'),
         );
     }
 }
