@@ -1,0 +1,17 @@
+.faq{
+    margin-top: 10px;
+    margin-bottom 10px;
+    padding: 10px;
+    line-height: 1.5;
+}
+
+.question{
+    color: #bbb;
+    font-weight: bold;
+}
+.answer{
+
+}
+.answer::before{
+    content: '\2192 ';
+}

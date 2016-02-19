@@ -1,0 +1,70 @@
+body{
+    font-family: 'Quicksand', sans-serif;
+    background-color: #fafafa;
+    color: #717171;
+    padding: 0px;
+}
+a{
+    font-family: 'Karla', serif;
+}
+a, a:visited, a:hover, a:focus{
+    outline: none;
+    text-decoration: none;
+}
+a, a:visited, a:focus{
+    color: #969696;
+    transition: .2s;
+}
+a:hover{
+    color: #646464;
+}
+
+#title-block{
+    padding: 30px;
+    background-color: #fff;
+}
+
+#title-block .title{
+    font-size: 4em;
+    color: #e67e22;
+}
+
+#title-block .extra{
+    font-size: 2em;
+    color: #969696;
+}
+
+#title-block .menu{
+    text-align: right;
+    font-size: 1.23em;
+}
+
+#title-block .menu-item{
+    margin-left: 50px;
+}
+
+#content-block{
+    padding: 50px 30px;
+}
+.msg{
+    font-size: 6em;
+    font-weight: 300;
+    text-align: center;
+    color: #ccc;
+}
+
+#footer-block{
+    margin-top: 50px;
+    font-weight: bold;
+    color: #bbb;
+    text-align: center;
+}
+#footer-block .container{
+    padding: 30px 10px;
+    border-top: 1px solid #ddd;
+}
+
+.page-title{
+    font-size: 3em;
+    margin-bottom: 24px;
+}

@@ -1,0 +1,13 @@
+.rule{
+    margin-bottom: 6px;
+    margin-top: 6px;
+    padding: 10px 0px;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+.rule .heading{
+    font-size: 1.23em;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
