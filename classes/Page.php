@@ -4,11 +4,24 @@ require_once 'Model.php';
 require_once 'View.php';
 require_once 'Controller.php';
 
+function to_camel_case($str) {
+    // Split string in words.
+    $words = explode('_', strtolower($str));
+
+    $return = '';
+    foreach ($words as $word) {
+        $return .= ucfirst(trim($word));
+    }
+    return $return;
+}
+
 class Page
 {
     private $model;
     private $view;
     private $controller;
+    private $method;
+    private $method_name;
 
     public function __construct()
     {
@@ -30,18 +43,32 @@ class Page
         $this->controller = $controller;
     }
 
+    public function set_method($method)
+    {
+        $this->method = strtolower($method);
+    }
+
+    public function set_method_name($method_name)
+    {
+        $this->method_name = $method_name;
+    }
+
     public function generate()
     {
-        if( $this->view )
+        if( $this->controller )
         {
-            if( $this->controller )
-            {
-                $this->controller->preprocess();
-            }
+            if (! $this->method )
+                $this->method = "get";
+
+            $action = $this->method;
+            if ( $this->method_name )
+                $action = $action . "_" . $this->method_name;
+
+            $this->view = $this->controller->$action();
         }
-        else
+        else if (! $this->view )
         {
-            $this->view = new View($this->model, '__default_template.html');
+            $this->set_template('__default_template.html');
         }
         $this->view->render();
     }
