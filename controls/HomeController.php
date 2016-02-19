@@ -7,8 +7,10 @@ class HomeController extends Controller
         return new View($this->model, 'home.html');
     }
 
-    public function get_cool()
+    // Try url /home/cool/Bibek/Dahal/
+    public function get_cool($a="", $b="")
     {
+        echo $a . " " . $b;
         return new View($this->model, 'rules.html');
     }
 }

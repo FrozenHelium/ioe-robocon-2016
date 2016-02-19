@@ -22,6 +22,7 @@ class Page
     private $controller;
     private $method;
     private $method_name;
+    private $arguments;
 
     public function __construct()
     {
@@ -53,6 +54,11 @@ class Page
         $this->method_name = $method_name;
     }
 
+    public function set_arguments($arguments)
+    {
+        $this->arguments = $arguments;
+    }
+
     public function generate()
     {
         if( $this->controller )
@@ -64,7 +70,11 @@ class Page
             if ( $this->method_name )
                 $action = $action . "_" . $this->method_name;
 
-            $this->view = $this->controller->$action();
+            if (! $this->arguments )
+                $this->view = $this->controller->$action();
+            else {
+                $this->view = call_user_func_array(array($this->controller, $action), $this->arguments);
+            }
         }
         else if (! $this->view )
         {

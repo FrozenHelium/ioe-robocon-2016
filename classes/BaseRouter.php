@@ -34,7 +34,7 @@ class BaseRouter
     	$uri = '/' . trim($uri, '/');
     	return $uri;
     }
-    
+
     public function route($php_self, $request_uri, $method)
     {
         $args = $this->get_args($php_self, $request_uri);
@@ -52,6 +52,7 @@ class BaseRouter
         if(count($routes) > 0)
         {
             try {
+                $controller = null;
                 if (key_exists($routes[0], $this->routing_rules))
                 {
                     $rule = $this->routing_rules[$routes[0]];
@@ -60,20 +61,20 @@ class BaseRouter
                         $page->set_template($rule[1]);
                     }
                     else if ($rule[0] == "controller") {
-                        $page->set_controller(new $rule[1]($page->get_model()));
-
-                        if (count($routes) > 1)
-                        {
-                            $page->set_method_name($routes[1]);
-                        }
+                        $controller = new $rule[1]($page->get_model());
                     }
                 }
                 else {
                     $class_name = to_camel_case($routes[0]) . 'Controller';
-                    $page->set_controller(new $class_name($page->get_model()));
+                    $controller = new $class_name($page->get_model());
+                }
 
+                if ($controller) {
+                    $page->set_controller($controller);
                     if (count($routes) > 1)
                     {
+                        if (count($routes) > 2)
+                            $page->set_arguments(array_slice($routes, 2));
                         $page->set_method_name($routes[1]);
                     }
                 }

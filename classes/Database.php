@@ -13,7 +13,9 @@ class Database extends mysqli
         {
             die('Connect Error ('.mysqli_connect_errno().') '.mysqli_connect_error());
         }
-        $query = $this->prepare('CREATE DATABASE IF NOT EXISTS ' + DATABASE);
+
+        $stmt = 'CREATE DATABASE IF NOT EXISTS `' . DATABASE . '`';
+        $query = $this->prepare($stmt);
         if($query)
         {
             if($query->execute())
@@ -22,9 +24,11 @@ class Database extends mysqli
             }
             else
             {
-                echo 'failed to create database';
+                die('Failed to create database.<br>' . $this->error);
             }
         }
+        else
+            die($this->error . "<br>" . $stmt);
     }
 
     // make class singleton by not responding to cloning
