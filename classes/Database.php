@@ -42,5 +42,12 @@ class Database extends mysqli
         }
         return self::$instance;
     }
+
+    public function query_with_error($sql) {
+        $res= $this->query($sql);
+        if ($res === false)
+            die($this->error . "<br>" . $sql);
+        return $res;
+    }
 }
 ?>

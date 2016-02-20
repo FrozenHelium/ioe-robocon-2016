@@ -1,15 +1,10 @@
 <?php
 require_once 'BaseRouter.php';
-require_once '../models/User.php';
 
 class Router extends BaseRouter
 {
     public function __construct()
     {
-        // create user
-        $user = new User();
-        $user->username = "helloThere";
-        $user->save();
 
         $this->routing_rules = array(
             // Default rule
