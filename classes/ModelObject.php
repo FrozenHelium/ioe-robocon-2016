@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Database.php';
+require_once 'Query.php';
 
 function to_snake_case($input) {
     preg_match_all('!([A-Z][A-Z0-9]*(?=$|[A-Z][a-z0-9])|[A-Za-z][a-z0-9]+)!', $input, $matches);
@@ -151,6 +151,10 @@ class ModelObject
                 $class = get_called_class();
                 $obj = new $class();
 
+                foreach ($obj as $key=>$val) {
+                    unset($obj->$key);
+                }
+
                 foreach ($row as $key=>$val) {
                     $obj->$key = $val;
                 }
@@ -175,46 +179,12 @@ class ModelObject
         return self::get_from_query_result($result);
     }
 
-    public static function get() {
-        $args = func_get_args();
-        if (count($args) == 0)
-            return self::get_all();
-
-        $params = array();
-        $ptypes = "";
-
-        for($i=1; $i<count($args); ++$i) {
-            $type = gettype($args[$i]);
-            if ($type == "string") {
-                $ptypes .= 's';
-            }
-            else {
-                $ptypes .= 'd';
-            }
-        }
-
-        $params[] = &$ptypes;
-        for($i=1; $i<count($args); ++$i) {
-            $params[] = &$args[$i];
-        }
-
-        $db = Database::get_instance();
-        $table = self::get_table_name();
-        $sql = "SELECT * FROM $table WHERE " . $args[0];
-
-        $stmt = $db->prepare($sql);
-        if (!$stmt)
-            die($db->error . "<br> $sql");
-
-        if (count($params) > 1)
-            call_user_func_array(array($stmt, "bind_param"), $params);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return self::get_from_query_result($result);
-    }
-
     public static function get_db() {
         return Database::get_instance();
+    }
+
+    public static function query() {
+        return new Query(get_called_class());
     }
 }
 

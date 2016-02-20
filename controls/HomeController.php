@@ -6,15 +6,27 @@ class HomeController extends Controller
     public function get()
     {
         // Get all users
-        // $users = User::get();
+        // $users = User::get_all();
+        // $users = User::query()->get();
 
-        // Filter users (unsafe)
-        // $users = User::get("first_name='Bibek' AND last_name='Dahal'");
+        // Raw query
+        // $users = User::raw_query("SELECT * FROM user WHERE first_name='Bibek' AND last_name='Dahal'");
 
-        // Filter users (safe)
-        $users = User::get("first_name=? AND last_name=?", "Bibek", "Dahal");
+        // Query-Builder: Filter users (unsafe)
+        // $users = User::query()->where("first_name='Bibek' AND last_name='Dahal'")->get();
+
+        // Query-Builder: Filter users (safe)
+        $users = User::query()->where("first_name=? AND last_name=?", "Bibek", "Dahal")->get();
+
+        // Query-Builder: Filter and project only the last name
+        // $users = User::query()->where("first_name=?", "Bibek")->select("last_name")->get();
+
         foreach ($users as $user) {
             var_dump($user);
+
+            // We can modify and save the model objects returned from query
+            // $user->privilege = 1;
+            // $user->save();
         }
 
         return new View($this->model, 'home.html');

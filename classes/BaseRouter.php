@@ -1,17 +1,16 @@
 <?php
 
+require_once 'Page.php';
+
 // Autoload controller classes
 spl_autoload_register('autoLoadClass');
-
-class AutoLoadException extends Exception {
-}
 
 function autoLoadClass($classname)
 {
     if (preg_match('/[a-zA-Z]+Controller$/', $classname)) {
         $file = '../controls/' . $classname . '.php';
         if (!file_exists($file)) {
-            throw new AutoLoadException("Couldn't load file <b>controls/" . $classname . ".php</b>");
+            throw new Exception404("Couldn't load file <b>controls/" . $classname . ".php</b>");
         }
 
         include $file;
@@ -20,7 +19,6 @@ function autoLoadClass($classname)
     return false;
 }
 
-require_once 'Page.php';
 
 class BaseRouter
 {
@@ -49,9 +47,9 @@ class BaseRouter
         $page = new Page();
         $page->set_method($method);
 
-        if(count($routes) > 0)
-        {
-            try {
+        try {
+            if(count($routes) > 0)
+            {
                 $controller = null;
                 if (key_exists($routes[0], $this->routing_rules))
                 {
@@ -79,18 +77,19 @@ class BaseRouter
                     }
                 }
             }
-            catch (AutoLoadException $e) {
-                $page->set_template('404.html');
+            else
+            {
+                if (key_exists("default", $this->routing_rules))
+                    header("Location: /" . $this->routing_rules["default"]);
+                exit();
             }
+            $page->generate();
         }
-        else
-        {
-            if (key_exists("default", $this->routing_rules))
-                header("Location: /" . $this->routing_rules["default"]);
-            exit();
+        catch (Exception404 $e) {
+            $page->set_controller(null);
+            $page->set_template('404.html');
+            $page->generate();
         }
-
-        $page->generate();
     }
 }
 

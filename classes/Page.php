@@ -4,6 +4,9 @@ require_once 'Model.php';
 require_once 'View.php';
 require_once 'Controller.php';
 
+class Exception404 extends Exception {
+}
+
 function to_camel_case($str) {
     // Split string in words.
     $words = explode('_', strtolower($str));
@@ -69,6 +72,10 @@ class Page
             $action = $this->method;
             if ( $this->method_name )
                 $action = $action . "_" . $this->method_name;
+
+            if (!method_exists($this->controller, $action))
+                throw new Exception404("Method <b>$action</b> doesn't exists in controller <b>"
+                    . get_class($this->controller) . "</b>");
 
             if (! $this->arguments )
                 $this->view = $this->controller->$action();
