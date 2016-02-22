@@ -1,14 +1,14 @@
 <html>
 <head>
     <title>Robocup 2016</title>
-    {% include 'basic-includes.html' %}
-    <link rel="stylesheet" type="text/css" href="/css/rules.css">
+    {% include 'inc.html' %}
+    <link rel="stylesheet" type="text/css" href="{% url 'css/rules.css' %}">
 </head>
 <body>
     <div id="title-block">
         <div class="container">
             <div class="menu">
-                <a class="menu-item" href="/home">Home</a>
+                <a class="menu-item" href="{% url 'home' %}">Home</a>
             </div>
             <div class="title">Robocup 2016</div>
             <div class="extra">Journey to Mustang</div>
@@ -22,7 +22,7 @@
             <div class="rules">
                 Please read the following rules carefully. They contain critical information about the competition.
                 You can also download the <a href="#">pdf version</a> of rules. If you still have confusions, you
-                may want to checkout <a href="/faqs">FAQs</a>.
+                may want to checkout <a href="{% url 'faqs' %}">FAQs</a>.
                 <div class="row">
                     <div class="col-md-6">
                         <div class="rule">

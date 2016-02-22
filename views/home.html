@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Robocup 2016</title>
-    {% include 'basic-includes.html' %}
-    <link rel="stylesheet" type="text/css" href="/css/home.css">
+    {% include 'inc.html' %}
+    <link rel="stylesheet" type="text/css" href="{% url 'css/home.css' %}">
 </head>
 <body>
     <div id="title-block">
         <div class="container">
             <div class="menu">
-                <a class="menu-item" href="/rules">Rules &amp; Details</a>
-                <a class="menu-item" href="/faqs">FAQs</a>
+                <a class="menu-item" href="{% url 'rules' %}">Rules &amp; Details</a>
+                <a class="menu-item" href="{% url 'faqs' %}">FAQs</a>
             </div>
             <div class="title">Robocup 2016</div>
             <div class="extra">Journey to Mustang</div>

@@ -80,7 +80,7 @@ class BaseRouter
             else
             {
                 if (key_exists("default", $this->routing_rules))
-                    header("Location: /" . $this->routing_rules["default"]);
+                    header("Location: " .get_url($this->routing_rules["default"]));
                 exit();
             }
             $page->generate();

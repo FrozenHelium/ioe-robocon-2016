@@ -85,7 +85,7 @@ class Page
         }
         else if (! $this->view )
         {
-            $this->set_template('__default_template.html');
+            $this->set_template('fiber.html');
         }
         $this->view->render();
     }

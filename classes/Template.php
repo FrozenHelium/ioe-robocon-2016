@@ -17,12 +17,6 @@ class Template
         return str_replace($match, $include_content, $content);
     }
 
-    // temporary function to get url from route
-    private function url($route)
-    {
-        return "";
-    }
-
     // extend is a bit complex, so is left for later
     private function extend_to($content, $match, $base_template_name)
     {
@@ -45,45 +39,52 @@ class Template
         $content = file_get_contents(ROOTDIR.'/views/'.$this->file);
 
         // regular expression for {% action bla-bla %} format
-        $action_regx = "[\{\%(.*)\%\}]";
-        if(preg_match_all($action_regx, $content, $matches))
+        $action_regx = "[{%(.*)%}]";
+        $num_actions = 0;
+        do
         {
-            for($i=0; $i<count($matches[0]);$i++)
+            $num_actions = 0;
+            if(preg_match_all($action_regx, $content, $matches))
             {
-                $command = trim($matches[1][$i]);
-                $temp = explode(' ', $command, 2);
-                $action = $temp[0];
-                $args = array_slice($temp, 1);
-
-                // remove quotes if present
-                for( $n=0; $n<count($args); $n++)
+                for($i=0; $i<count($matches[0]);$i++)
                 {
-                    $args[$n] = trim($args[$n], '"');
-                    $args[$n] = trim ($args[$n], "'");
-                }
+                    $command = trim($matches[1][$i]);
+                    $temp = explode(' ', $command, 2);
+                    $action = $temp[0];
+                    $args = array_slice($temp, 1);
 
-                switch ($action)
-                {
-                case "include":
-                    $content = $this->include_to($content, $matches[0][$i], $args[0]);
-                    break;
-                // yet to be implemented
-                // case "extends":
-                //     $this->extend_to($content, $matches[0][$i], $args[0]);
-                //     $content = str_replace($matches[0][$i], "", $content);
-                //     break;
-                case "url":
-                    $content = str_replace($matches[0][$i], $this->get_url($args[0]), $content);
-                    break;
-                default:
-                    // maybe throw some error
-                    $content = str_replace($matches[0][$i], "", $content);
+                    // remove quotes if present
+                    for( $n=0; $n<count($args); $n++)
+                    {
+                        $args[$n] = trim($args[$n], '"');
+                        $args[$n] = trim ($args[$n], "'");
+                    }
+
+                    switch ($action)
+                    {
+                    case "include":
+                        $content = $this->include_to($content, $matches[0][$i], $args[0]);
+                        ++$num_actions;
+                        break;
+                    // yet to be implemented
+                    // case "extends":
+                    //     $this->extend_to($content, $matches[0][$i], $args[0]);
+                    //     $content = str_replace($matches[0][$i], "", $content);
+                    //     break;
+                    case "url":
+                        $content = str_replace($matches[0][$i], get_url($args[0]), $content);
+                        ++$num_actions;
+                        break;
+                    default:
+                        // maybe throw some error
+                        $content = str_replace($matches[0][$i], "", $content);
+                    }
                 }
             }
-        }
+        } while ($num_actions > 0);
 
         // regular expression for {{ var }} format
-        $var_regx = "[\{\{(.*)\}\}]";
+        $var_regx = "[{{(.*)}}]";
         if(preg_match_all($var_regx, $content, $matches))
         {
             for($i=0; $i < count($matches[0]); $i++ )
