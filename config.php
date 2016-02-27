@@ -3,10 +3,10 @@
 // config.php
 // contains global configurations
 
-define("HOST",      "localhost");
-define("USER",      "root");
-define("PASSWORD",  "noob");
-define("DATABASE",  "robocup-db");
+define("HOST",      "robocon.ioe.edu.np");
+define("USER",      "robocon");
+define("PASSWORD",  "XQCo7NdeX5UZnGtR");
+define("DATABASE",  "robocon2016");
 
 define("ROOTDIR", __DIR__);
 
