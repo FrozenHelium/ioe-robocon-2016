@@ -20,11 +20,12 @@ a:hover{
 }
 
 #title-block{
-    padding: 30px;
+    padding: 10px 0px;
     background-color: #fff;
 }
 
 #title-block .title{
+    font-family: 'Quicksand', sans-serif;
     font-size: 4em;
     color: #e67e22;
 }
@@ -44,7 +45,6 @@ a:hover{
 }
 
 #content-block{
-    padding: 50px 30px;
 }
 
 #footer-block{
@@ -61,4 +61,18 @@ a:hover{
 .page-title{
     font-size: 3em;
     margin-bottom: 24px;
+}
+
+.img-container{
+    padding: 20px;
+}
+.img-label{
+    text-align: center;
+    font-weight: bold;
+    color: #aaa;
+}
+.title{
+    font-family: 'Karla', sans-serif;
+    font-size: 2em;
+    margin: 10px 0px;
 }

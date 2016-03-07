@@ -1,8 +1,31 @@
 .msg{
-    font-size: 2em;
-	margin-top: 50px;
+	margin-top: 10px;
 	color: #e67e22;
-    font-weight: 300;
     text-align: center;
 }
 
+#content-block{
+    line-height: 1.6;
+    font-size: 1.11em;
+}
+
+#content-block p{
+    text-align: justify;
+}
+
+#gamefield-img{
+    width: 100%;
+    padding: 20px 10px;
+}
+.carousel{
+    display: block;
+    text-align: center;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+.carousel img{
+    width: 100%;
+}
+.carousel-caption{
+    text-align: left;
+}

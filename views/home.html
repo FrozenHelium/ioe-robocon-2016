@@ -10,32 +10,108 @@
     <div id="title-block">
         <div class="container">
             <div class="menu">
-                <a class="menu-item" href="{% url 'rules' %}">Rules &amp; Details</a>
-                <a class="menu-item" href="{% url 'faqs' %}">FAQs</a>
+                <!-- <a class="menu-item" href="{% url 'rules' %}">Rules &amp; Details</a>
+                <a class="menu-item" href="{% url 'faqs' %}">FAQs</a> -->
+                <a class="menu-item" href="#">Rules &amp; Details</a>
+                <a class="menu-item" href="#">FAQs</a>
             </div>
             <div class="title">IoE Robocon 2016</div>
             <div class="extra">Journey to Mustang</div>
         </div>
+        <p class="msg">
+            The site is currently under construction, some functionality might not work.
+        </p>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="carousel-slides" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-slides" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-slides" data-slide-to="1"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active">
+                                <img src="{% url 'img/mustang.jpg' %}" alt="Mustang">
+                                <div class="carousel-caption">
+                                    <h3>Mustang</h3>
+                                    <p>Far view of Mustang</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img src="{% url 'img/upper-mustang.jpg' %}" alt="Upper Mustang">
+                                <div class="carousel-caption">
+                                    <h3>Upper Mustang</h3>
+                                    <p>A view of Upper Mustang</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="content-block">
         <div class="container">
-            <p>
-                IOE has been organizing different ROBOTICS events in the past.
-                National Robotic Competitions(Robocup Nepal, 7 times on different theme),
-                Workshop on Robotics and Automation were the few events that were helpful
-                to the Robotics enthusiasts.
-            </p>
-            <p>
-                This year Center for Applied Research and Development(CARD) of Institute
-                of Engineering(IOE) is teaming up with Robotics Club,Pulchowk Campus to
-                organize a National Robotics Competition. This year the theme for Robotic
-                Contest will be "JOURNEY TO MUSTANG". The contest shall take place between
-                the undergraduate students of college/university/polytechnic of the nation.
-                The contest will be held in June,2016.
-            </p>
-            <p class="msg">
-                The site is currently under construction, some functionality might not work.
-            </p>
+            <div class="row">
+                <div class="col-md-7">
+                    <div id="main-content">
+                        <div class="title">About IoE Robocon</div>
+                        <p>
+                            IOE has been organizing different ROBOTICS events in the past.
+                            National Robotic Competitions(Robocup Nepal, 7 times on different theme),
+                            Workshop on Robotics and Automation were the few events that were helpful
+                            to the Robotics enthusiasts.
+                        </p>
+                        <p>
+                            This year Center for Applied Research and Development(CARD) of Institute
+                            of Engineering(IoE) is teaming up with Robotics Club,Pulchowk Campus to
+                            organize a National Robotics Competition. This year the theme for Robotic
+                            Contest will be "JOURNEY TO MUSTANG". The contest shall take place between
+                            the undergraduate students of college/university/polytechnic of the nation.
+                            The contest will be held in June, 2016.
+                        </p>
+
+                        <div class="title">This year's concept</div>
+                        <p>
+                            Our country Nepal has the most varying geographical terrains in the whole world.
+                            The terrains vary from flat belts to mid hills to very steep mountain ranges.
+                            Despite the awkward and astonishing terrains, people reside in flat belts as well as near steep mountains.
+                            Although the lifestyle of people in southern flat regions has significantly
+                            improved there still exists hardship in the hilly and mountain regions.
+                            People still transport consumable and non-consumable goods from Terai region to
+                            Hills and Mountains for sustaining their lives. People face various obstacles like flood,
+                            landslides, etc. during the transport.
+                        </p>
+                        <div class="img-container">
+                            <img id="gamefield-img" src="{% url 'img/iso.png' %}">
+                            <div class="img-label">fig: Game field</div>
+                        </div>
+                        <p>
+                            Based on the facts above, the game of IOE Robocon 2016 is designed in order to
+                            visualize the geographical terrains of our country and transport of various items
+                            from flat belts to high mountains. Each team has to build one robot.
+                            The robot picks two payloads from flat belt. One is common consumable good (salt) and
+                            the other is the telecommunication device. Crossing the different terrains and
+                            removing the various obstacles the telecommunication device is dropped off at Pokhara
+                            and the consumable good is dropped off at Mustang. So the theme of the contest “Journey to Mustang”.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-offset-1 col-md-4">
+                    <div id="side-content">
+                        <div class="title">News &amp; Updates</div>
+                        <div class="news">
+                            No recent news
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- <div class="msg">
                 Under Construction!
             </div> -->
