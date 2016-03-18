@@ -1,15 +1,14 @@
 <?php
 
-require_once "../classes/Model.php";
-
 class Post extends Model {
+
     public function get_schema() {
-        return array(
-            array("title", "string"),
-            array("content", "string"),
-            array("created_at", "datetime"),
-            array("modified_at", "datetime")
-        );
+        return [
+            ["title", "string"],
+            ["content", "string"],
+            ["created_at", "datetime"],
+            ["modified_at", "datetime"]
+        ];
     }
 
     public function presave() {

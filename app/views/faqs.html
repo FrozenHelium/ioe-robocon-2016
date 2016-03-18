@@ -20,22 +20,16 @@
                 Frequently Asked Questions (FAQs)
             </div>
             <div class="faqs">
+                {% foreach $faqs as $faq %}
                 <div class="faq">
                     <div class="question">
-                        1. Why are there so many noobs around me?
+                        {{ $faq->question }}
                     </div>
                     <div class="answer">
-                        well the answer is pretty obvious, you are a noob too.
+                        {{ $faq->answer }}
                     </div>
                 </div>
-                <div class="faq">
-                    <div class="question">
-                        1. What is Lorem Ipsum?
-                    </div>
-                    <div class="answer">
-                        Lorem Ipsum is the default filler text that is used on millions of web pages. It is a useful thing in the sense that it fills the space but not so much because it doesn’t make any sense to a regular user.
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

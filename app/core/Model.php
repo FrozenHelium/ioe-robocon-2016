@@ -120,6 +120,10 @@ class Model
         $sql = "INSERT INTO " . $this->get_table_name() .
             " ($keys) VALUES($values) " .
             " ON DUPLICATE KEY UPDATE $update_string";
+            
+        if (!isset($this->id)) {
+            $this->id = $db->insert_id;
+        }
 
         $db->query_with_error($sql);
         $this->postsave();

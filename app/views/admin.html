@@ -1,0 +1,33 @@
+Faqs:
+<br>
+<form method="post">
+{% $i = 1 %}
+{% foreach $faqs as $faq %}
+    Question #{{$i}}:
+    <br>
+    <textarea name="faq-qn-{{$faq->id}}" rows="4" cols="50">{{$faq->question}}</textarea>
+
+    <br>
+    Answer:
+    <br>
+    <textarea name="faq-ans-{{$faq->id}}" rows="4" cols="50">{{$faq->answer}}</textarea>
+    <br>
+
+    {% $i++ %}
+{% endfor %}
+    Question #{{$i}}:
+    <br>
+    <textarea name="faq-qn--1" rows="4" cols="50"></textarea>
+
+    <br>
+    Answer:
+    <br>
+    <textarea name="faq-ans--1" rows="4" cols="50"></textarea>
+    <br>
+    <input type="submit" name="savefaq" value="Save">
+</form>
+
+
+<form method="post">
+    <input type="submit" name="logout" value="Logout">
+</form>
