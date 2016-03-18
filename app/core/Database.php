@@ -1,6 +1,6 @@
 <?php
 
-require_once '../config.php';
+require_once 'config.php';
 
 class Database extends mysqli
 {
@@ -44,10 +44,18 @@ class Database extends mysqli
     }
 
     public function query_with_error($sql) {
-        $res= $this->query($sql);
+        $res = $this->query($sql);
         if ($res === false)
             die($this->error . "<br>" . $sql);
         return $res;
+    }
+
+    public function multi_query_with_error($sql) {
+        $this->multi_query($sql);
+        do {
+            if ($res = $this->store_result())
+                $res->free();
+        } while ($this->more_results() && $this->next_result());
     }
 }
 ?>

@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Database.php';
+require_once 'utils.php';
 
 class Query
 {
@@ -21,14 +22,20 @@ class Query
             return $this;
 
         for($i=1; $i<count($args); ++$i) {
-            $type = gettype($args[$i]);
+            $arg = $args[$i];
+            $type = gettype($arg);
             if ($type == "string") {
                 $this->ptypes .= 's';
+                $this->params[] = $arg;
+            }
+            else if ($arg instanceof DateTime) {
+                $this->ptypes .= 's';
+                $this->params[] = $arg->format("Y-m-d H:i:s");
             }
             else {
                 $this->ptypes .= 'd';
+                $this->params[] = $arg;
             }
-            $this->params[] = $args[$i];
         }
 
         $this->selection = $args[0];
@@ -79,6 +86,13 @@ class Query
 
         //return $class_name::get_from_query_result($result);
         return call_user_func(array($this->class_name, "get_from_query_result"), $result);
+    }
+
+    public function first() {
+        $objects = $this->get();
+        if (count($objects)==0)
+            return null;
+        return $objects[0];
     }
 
     // TODO aggregates

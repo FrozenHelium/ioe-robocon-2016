@@ -4,7 +4,7 @@ class HomeController extends Controller
 {
     public function get()
     {
-        return new View($this->model, 'home.html');
+        return new TemplateView('home.html');
     }
 }
 

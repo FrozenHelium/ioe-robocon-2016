@@ -10,6 +10,8 @@ define("DATABASE",  "robocon2016");
 
 define("ROOTDIR", __DIR__);
 
+define("DEBUG", false);
+
 // function to get url from route
 function get_url($route)
 {
