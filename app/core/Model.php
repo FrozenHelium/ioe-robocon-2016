@@ -195,6 +195,9 @@ class Model
                     $max_length = 30;
                 $result = "VARCHAR($max_length)";
                 break;
+            case 'text':
+                $result = "TEXT";
+                break;
             case 'datetime':
                 $result = "DATETIME";
                 break;

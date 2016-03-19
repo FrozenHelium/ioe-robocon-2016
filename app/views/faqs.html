@@ -35,10 +35,13 @@
             </div>
             <div class="col-md-5">
                 <div class="form-wrapper">
+                    {% if $success %}
+                        Your question was posted succesfully !
+                    {% endif %}
                     <div class="title">
                         Ask a question
                     </div>
-                    <form>
+                    <form method="post">
                         <input name="email" type="email" placeholder="your email">
                         <textarea name="query" placeholder="question" rows="4"></textarea>
                         <input class="btn btn-default" type="submit">
