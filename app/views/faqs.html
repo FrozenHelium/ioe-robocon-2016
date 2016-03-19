@@ -8,7 +8,7 @@
     <div id="title-block">
         <div class="container">
             <div class="menu">
-                <a class="menu-item" href="{% url 'home' %}">Home</a>
+                <a class="menu-item" href="{% url '' %}">Home</a>
             </div>
             <div class="title">IoE Robocon 2016</div>
             <div class="extra">Journey to Mustang</div>
@@ -16,20 +16,34 @@
     </div>
     <div id="content-block">
         <div class="container">
-            <div class="page-title">
-                Frequently Asked Questions (FAQs)
-            </div>
-            <div class="faqs">
-                {% foreach $faqs as $faq %}
-                <div class="faq">
-                    <div class="question">
-                        {{ $faq->question }}
-                    </div>
-                    <div class="answer">
-                        {{ $faq->answer }}
-                    </div>
+            <div class="col-md-8">
+                <div class="page-title title">
+                    Frequently Asked Questions (FAQs)
                 </div>
-                {% endfor %}
+                <div class="faqs">
+                    {% foreach $faqs as $faq %}
+                    <div class="faq">
+                        <div class="question">
+                            {{ $faq->question }}
+                        </div>
+                        <div class="answer">
+                            {{ $faq->answer }}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-wrapper">
+                    <div class="title">
+                        Ask a question
+                    </div>
+                    <form>
+                        <input name="email" type="email" placeholder="your email">
+                        <textarea name="query" placeholder="your question" rows="4"></textarea>
+                        <input class="btn btn-default" type="submit">
+                    </form>
+                </div>
             </div>
         </div>
     </div>

@@ -15,3 +15,20 @@
 .answer::before{
     content: '\2192 ';
 }
+
+#content-block{
+    padding-top: 20px;
+}
+
+form{
+    text-align: right;
+}
+form input[type='email'],
+form textarea{
+    display:block;
+    width: 100%;
+    margin: 20px 0px;
+    padding: 10px 16px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
