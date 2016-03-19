@@ -1,33 +1,51 @@
-Faqs:
-<br>
-<form method="post">
-{% $i = 1 %}
-{% foreach $faqs as $faq %}
-    Question #{{$i}}:
-    <br>
-    <textarea name="faq-qn-{{$faq->id}}" rows="4" cols="50">{{$faq->question}}</textarea>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Robocup 2016: Admin panel</title>
+    {% include 'inc.html' %}
+    <link rel="stylesheet" type="text/css" href="{% url 'css/admin.css' %}">
+</head>
+<body>
+    <div id="title-block">
+        <div class="container">
+            <div class="menu">
+                <form method="post">
+                    <input class="btn btn-default" type="submit" name="logout" value="Logout">
+                </form>
+            </div>
 
-    <br>
-    Answer:
-    <br>
-    <textarea name="faq-ans-{{$faq->id}}" rows="4" cols="50">{{$faq->answer}}</textarea>
-    <br>
+        </div>
+    </div>
 
-    {% $i++ %}
-{% endfor %}
-    Question #{{$i}}:
-    <br>
-    <textarea name="faq-qn--1" rows="4" cols="50"></textarea>
+    <div id="content-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-wrapper">
+                        <div class="title">FAQs</div>
+                        <form method="post">
+                        {% $i = 1 %}
+                        {% foreach $faqs as $faq %}
+                            <div class="faq">
+                                <div class="sn">Question #{{$i}}</div>
+                                <textarea class="question" name="faq-qn-{{$faq->id}}" rows="1">{{$faq->question}}</textarea>
+                                <textarea class="answer" name="faq-ans-{{$faq->id}}" rows="4" >{{$faq->answer}}</textarea>
+                            </div>
+                            {% $i++ %}
+                        {% endfor %}
+                            <div class="faq">
+                                <div class="sn">Add new question</div>
+                                <textarea class="question" name="faq-qn--1" rows="1" placeholder="Question" ></textarea>
+                                <textarea class="answer" name="faq-ans--1" rows="4" placeholder="Answer"></textarea>
+                            </div>
+                            <input class="btn btn-default" type="submit" name="savefaq" value="Save">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <br>
-    Answer:
-    <br>
-    <textarea name="faq-ans--1" rows="4" cols="50"></textarea>
-    <br>
-    <input type="submit" name="savefaq" value="Save">
-</form>
-
-
-<form method="post">
-    <input type="submit" name="logout" value="Logout">
-</form>
+    {% include 'footer.html' %}
+</body>

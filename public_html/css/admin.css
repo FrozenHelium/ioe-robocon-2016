@@ -1,0 +1,40 @@
+#title-block .menu{
+    text-align: right;
+}
+
+#content-block{
+    padding-top: 30px;
+}
+
+.faq{
+    padding: 24px;
+    margin: 20px 0px;
+    background-color: #fff;
+    text-align: left;
+}
+.faq textarea{
+    width: 100%;
+    margin: 10px 0px;
+    padding: 10px 16px;
+    border: 1px solid #eee;
+}
+.faq .sn{
+    margin-bottom: 10px;
+}
+
+.form-wrapper{
+    margin-bottom: 20px;
+}
+
+.form-wrapper .title{
+    margin-left: 10px;
+}
+.form-wrapper form{
+    text-align: right;
+}
+
+.form-wrapper form input[type="submit"]{
+    margin-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}

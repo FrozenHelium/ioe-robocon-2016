@@ -76,3 +76,7 @@ a:hover{
     font-size: 2em;
     margin: 10px 0px;
 }
+
+.fa {
+    margin-right: 10px;
+}
