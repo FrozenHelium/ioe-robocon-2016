@@ -78,6 +78,12 @@ class AdminController extends Controller
             redirect('admin');
         }
 
+        else if (isset($_POST['deletefaq'])) {
+            $id = $_POST['faq_id'];
+            Faq::query()->where("id=?", $id)->delete();
+            redirect('admin');
+        }
+
         else if (isset($_POST['savefaq'])) {
             foreach ($_POST as $key=>$value) {
                 // Get each faq-question.

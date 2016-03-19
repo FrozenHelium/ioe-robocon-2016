@@ -5,6 +5,15 @@
     <title>Robocup 2016: Admin panel</title>
     {% include 'inc.html' %}
     <link rel="stylesheet" type="text/css" href="{% url 'css/admin.css' %}">
+
+    <script>
+        function delete_faq(id) {
+            if (window.confirm("Are you sure you want to delete this faq?")) {
+                $("#faq_id").val(id);
+                $("#deleteForm").submit();
+            }
+        }
+    </script>
 </head>
 <body>
     <div id="title-block">
@@ -28,7 +37,10 @@
                         {% $i = 1 %}
                         {% foreach $faqs as $faq %}
                             <div class="faq">
-                                <div class="sn">Question #{{$i}}</div>
+                                <div class="row">
+                                    <div class="sn col-md-9">Question #{{$i}}</div>
+                                    <input class="btn btn-danger col-md-2" value="Delete" onclick="delete_faq({{$faq->id}});">
+                                </div>
                                 <textarea class="question" name="faq-qn-{{$faq->id}}" rows="1">{{$faq->question}}</textarea>
                                 <textarea class="answer" name="faq-ans-{{$faq->id}}" rows="4" >{{$faq->answer}}</textarea>
                             </div>
@@ -46,6 +58,11 @@
             </div>
         </div>
     </div>
+
+    <form style="visible:hidden;" method="post" id="deleteForm">
+        <input type="hidden" name="deletefaq">
+        <input type="hidden" name="faq_id" value="-1" id="faq_id">
+    </form>
 
     {% include 'footer.html' %}
 </body>
